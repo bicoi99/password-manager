@@ -1,25 +1,22 @@
+// Modules
 const express = require("express");
 require("dotenv").config();
 require("colors");
 const morgan = require("morgan");
 const mongoose = require("mongoose");
+const cors = require("cors");
+const cookieParser = require("cookie-parser");
+// Routes import
+const authRoutes = require("./routes/auth");
 
-// Database
-const connectDB = async () => {
-  try {
-    const conn = await mongoose.connect(process.env.MONGO_URI, {
-      useNewUrlParser: true,
-      // useCreateIndex: true,
-      useUnifiedTopology: true,
-      // useFindAndModify: false,
-    });
-    console.log(`MongoDB connected: ${conn.connection.host}`.cyan.underline.bold);
-  } catch (err) {
-    console.log(`Error: ${err.message}`.red);
-    process.exit(1);
+// Database connect
+mongoose.connect(process.env.MONGO_URI, {}, (error) => {
+  if (!error) {
+    console.log("Connected to mongoDB".cyan.underline.bold);
+  } else {
+    console.log(error);
   }
-};
-connectDB();
+});
 
 // Initiate express
 const app = express();
@@ -27,11 +24,12 @@ const app = express();
 // Middleware
 app.use(express.json());
 app.use(morgan("tiny"));
+app.use(cookieParser());
+app.use(cors()); // pass {credentials: true, origin: ['http://localhost:3000'],} inside cors() if error
 
 // Routes
-
-app.get("/", async (req, res) => {});
+app.use("/auth", authRoutes);
 
 // Start listening
-const PORT = process.env.PORT;
+const PORT = process.env.PORT || 5000;
 app.listen(PORT, console.log(`Server running in ${process.env.NODE_ENV} mode on port ${PORT}`.yellow.bold));
