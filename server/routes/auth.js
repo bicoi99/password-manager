@@ -25,14 +25,16 @@ router.post("/login", async (req, res) => {
   // If no user found
   if (!user) {
     return res.status(404).send({
-      message: "User not found",
+      username: "Incorrect username",
+      password: "",
     });
   }
 
   // Compare user password with hashed password in database
   if (!(await bcrypt.compare(req.body.password, user.password))) {
     return res.status(400).send({
-      message: "Incorrect password",
+      username: "",
+      password: "Incorrect password",
     });
   }
 
@@ -77,9 +79,9 @@ router.get("/user", async (req, res) => {
 
     // Find user by id in database
     const user = await User.findById(decoded._id);
-    const { password, ...data } = await user.toJSON(); // do we need to return id as well?
+    const { username } = await user.toJSON(); // do we need to return id as well?
 
-    res.send(data);
+    res.send(username);
   });
 });
 

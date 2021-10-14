@@ -25,7 +25,7 @@ const app = express();
 app.use(express.json());
 app.use(morgan("tiny"));
 app.use(cookieParser());
-app.use(cors()); // pass {credentials: true, origin: ['http://localhost:3000'],} inside cors() if error
+app.use(cors({ credentials: true, origin: ["http://localhost:3000"] })); // pass to allow http cookie to go through
 
 // Routes
 app.use("/auth", authRoutes);
