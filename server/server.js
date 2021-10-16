@@ -8,6 +8,7 @@ const cors = require("cors");
 const cookieParser = require("cookie-parser");
 // Routes import
 const authRoutes = require("./routes/auth");
+const passwordRoutes = require("./routes/password");
 
 // Database connect
 mongoose.connect(process.env.MONGO_URI, {}, (error) => {
@@ -29,6 +30,7 @@ app.use(cors({ credentials: true, origin: ["http://localhost:3000"] })); // pass
 
 // Routes
 app.use("/auth", authRoutes);
+app.use("/password", passwordRoutes);
 
 // Start listening
 const PORT = process.env.PORT || 5000;
