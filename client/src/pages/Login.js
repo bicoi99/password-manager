@@ -2,7 +2,7 @@ import { useState } from "react";
 import { Redirect } from "react-router-dom";
 import axios from "axios";
 
-const Login = () => {
+const Login = ({ apiUrl }) => {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [redirect, setRedirect] = useState(false);
@@ -16,7 +16,7 @@ const Login = () => {
 
     axios
       .post(
-        "http://localhost:5000/auth/login",
+        apiUrl + "/auth/login",
         {
           username,
           password,
@@ -24,7 +24,6 @@ const Login = () => {
         { withCredentials: true }
       )
       .then((response) => {
-        console.log(response.data);
         setRedirect(true);
       })
       .catch((error) => {
