@@ -136,14 +136,18 @@
 }
 
 .home-container {
+  position: relative;
   margin: 60px auto 0 auto;
   max-width: 1000px;
-  min-height: calc(100% - 60px);
+  min-height: calc(100vh - 60px);
   background-color: white;
+  padding-bottom: 60px;
+}
+
+.flex-container {
   display: flex;
   flex-direction: column;
   align-items: center;
-  padding-bottom: 60px;
 }
 
 .add-btn {
@@ -228,12 +232,13 @@
   margin: 80px auto 0 auto;
   background-color: white;
   width: 450px;
-  height: 550px;
+  /* height: 550px; */
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: space-between;
   padding: 30px 0 40px;
+  gap: 20px;
 }
 
 .modal h1 {
@@ -254,4 +259,53 @@
 
 .btn:hover {
   transform: scale(1.1);
+}
+
+/* Media */
+@media only screen and (max-width: 768px) {
+  /* Login */
+  .login-box {
+    width: 90%;
+  }
+
+  .form-control {
+    width: 80%;
+  }
+
+  .form-btn {
+    width: 80%;
+  }
+
+  /* Navbar */
+  .navbar {
+    height: 80px;
+  }
+
+  .navbar .nav-container {
+    padding: 0 20px;
+  }
+
+  /* Home page */
+  .home-container {
+    margin: 80px auto 0 auto;
+    min-height: calc(100vh - 80px);
+  }
+
+  /* Password entity */
+  .password-entity {
+    width: 90%;
+    gap: 30px;
+  }
+
+  /* Modal */
+  .modal {
+    width: 95%;
+    margin-top: 90px;
+    gap: 10px;
+  }
+
+  .modal .form-control,
+  .modal .form-btn {
+    width: 85%;
+  }
 }

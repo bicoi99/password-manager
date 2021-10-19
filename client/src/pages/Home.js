@@ -96,39 +96,41 @@ const Home = ({ apiUrl }) => {
       )}
       <Navbar username={username} logout={logout} />
       <div className="home-container">
-        <div
-          className="add-btn btn"
-          onClick={() => {
-            setShowAdd(true);
-          }}
-        >
-          <img src={add} alt="add button" width="50" />
-        </div>
-        <div className="search">
-          <i className="fas fa-search"></i>
-          <input
-            type="text"
-            placeholder="Search app name..."
-            value={search}
-            onChange={(e) => {
-              setSearch(e.target.value);
+        <div className="flex-container">
+          <div
+            className="add-btn btn"
+            onClick={() => {
+              setShowAdd(true);
             }}
-          />
-        </div>
-        {sortAndFilterPasswords(passwords).map(({ _id, appName, username }) => {
-          return (
-            <PasswordEntity
-              key={_id}
-              apiUrl={apiUrl}
-              _id={_id}
-              appName={appName}
-              username={username}
-              deletePassword={deletePassword}
-              setShowEdit={setShowEdit}
-              setCurrentPassword={setCurrentPassword}
+          >
+            <img src={add} alt="add button" width="50" />
+          </div>
+          <div className="search">
+            <i className="fas fa-search"></i>
+            <input
+              type="text"
+              placeholder="Search app name..."
+              value={search}
+              onChange={(e) => {
+                setSearch(e.target.value);
+              }}
             />
-          );
-        })}
+          </div>
+          {sortAndFilterPasswords(passwords).map(({ _id, appName, username }) => {
+            return (
+              <PasswordEntity
+                key={_id}
+                apiUrl={apiUrl}
+                _id={_id}
+                appName={appName}
+                username={username}
+                deletePassword={deletePassword}
+                setShowEdit={setShowEdit}
+                setCurrentPassword={setCurrentPassword}
+              />
+            );
+          })}
+        </div>
       </div>
     </div>
   );
