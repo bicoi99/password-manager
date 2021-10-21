@@ -24,9 +24,11 @@ const app = express();
 
 // Middleware
 app.use(express.json());
-app.use(morgan("tiny"));
+if (process.env.NODE_ENV === "development") {
+  app.use(morgan("tiny"));
+}
 app.use(cookieParser());
-app.use(cors({ credentials: true, origin: ["http://localhost:3000"] })); // pass to allow http cookie to go through
+app.use(cors({ credentials: true, origin: ["https://vibrant-cray-bdff94.netlify.app/"] })); // pass to allow http cookie to go through
 
 // Routes
 app.use("/auth", authRoutes);
