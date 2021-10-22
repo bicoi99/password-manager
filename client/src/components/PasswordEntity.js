@@ -1,7 +1,7 @@
 import axios from "axios";
 import { useState } from "react";
 
-const PasswordEntity = ({ apiUrl, _id, appName, username, deletePassword, setShowEdit, setCurrentPassword }) => {
+const PasswordEntity = ({ apiUrl, _id, appName, username, setShowEdit, setShowDelete, setCurrentPassword }) => {
   const [showPassword, setShowPassword] = useState(true);
   const [password, setPassword] = useState("password");
 
@@ -44,7 +44,9 @@ const PasswordEntity = ({ apiUrl, _id, appName, username, deletePassword, setSho
         <i
           className="fas fa-lg fa-trash btn"
           onClick={() => {
-            deletePassword(_id);
+            setShowDelete(true);
+            setShowPassword(true);
+            setCurrentPassword({ _id, appName, username });
           }}
         ></i>
       </div>

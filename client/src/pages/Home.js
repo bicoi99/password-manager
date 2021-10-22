@@ -2,6 +2,7 @@ import axios from "axios";
 import { useEffect, useState } from "react";
 import { Redirect } from "react-router-dom";
 import Add from "../components/Add";
+import Delete from "../components/Delete";
 import Edit from "../components/Edit";
 import Navbar from "../components/Navbar";
 import PasswordEntity from "../components/PasswordEntity";
@@ -16,6 +17,7 @@ const Home = ({ apiUrl }) => {
   const [currentPassword, setCurrentPassword] = useState({});
   const [showAdd, setShowAdd] = useState(false);
   const [showEdit, setShowEdit] = useState(false);
+  const [showDelete, setShowDelete] = useState(false);
 
   // Run at component render
   useEffect(() => {
@@ -49,16 +51,7 @@ const Home = ({ apiUrl }) => {
   };
 
   const deletePassword = (_id) => {
-    if (window.confirm("Are you sure you want to delete?")) {
-      axios
-        .delete(`${apiUrl}/password/${_id}`, { withCredentials: true })
-        .then((res) => {
-          setPasswords([...passwords].filter((password) => password._id !== _id));
-        })
-        .catch((err) => {
-          console.log(err);
-        });
-    }
+    setPasswords([...passwords].filter((password) => password._id !== _id));
   };
 
   const editPassword = (newPassword) => {
@@ -93,6 +86,14 @@ const Home = ({ apiUrl }) => {
       {showEdit && (
         <Edit apiUrl={apiUrl} setShowEdit={setShowEdit} currentPassword={currentPassword} editPassword={editPassword} />
       )}
+      {showDelete && (
+        <Delete
+          apiUrl={apiUrl}
+          setShowDelete={setShowDelete}
+          _id={currentPassword._id}
+          deletePassword={deletePassword}
+        />
+      )}
       <Navbar username={username} logout={logout} />
       <div className="home-container">
         <div className="flex-container">
@@ -123,8 +124,8 @@ const Home = ({ apiUrl }) => {
                 _id={_id}
                 appName={appName}
                 username={username}
-                deletePassword={deletePassword}
                 setShowEdit={setShowEdit}
+                setShowDelete={setShowDelete}
                 setCurrentPassword={setCurrentPassword}
               />
             );

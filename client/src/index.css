@@ -74,7 +74,7 @@
 
 .form-btn {
   width: 70%;
-  margin-top: 20px;
+  margin-top: 10px;
   height: 45px;
   border: none;
   background-color: var(--main-color);
@@ -232,7 +232,6 @@
   margin: 80px auto 0 auto;
   background-color: white;
   width: 450px;
-  /* height: 550px; */
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -250,6 +249,55 @@
   position: absolute;
   top: 0;
   right: 0;
+}
+
+.delete-modal {
+  position: relative;
+  margin: 100px auto 0 auto;
+  background-color: white;
+  width: 250px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 20px 20px;
+  text-align: center;
+  gap: 30px;
+}
+
+.delete-modal h3 {
+  color: var(--main-color);
+  font-weight: 500;
+}
+
+.delete-btns {
+  display: flex;
+  gap: 10px;
+}
+
+.cancel-btn {
+  width: 100px;
+  height: 30px;
+  border: none;
+  font-family: inherit;
+  cursor: pointer;
+}
+
+.cancel-btn:hover {
+  background-color: #e6e6e6;
+}
+
+.confirm-btn {
+  width: 100px;
+  height: 30px;
+  border: none;
+  font-family: inherit;
+  cursor: pointer;
+  background-color: var(--main-color);
+  color: white;
+}
+
+.confirm-btn:hover {
+  background-color: #10c1c7;
 }
 
 /* Utilities */

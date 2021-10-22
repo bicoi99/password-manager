@@ -7,13 +7,14 @@ const Edit = ({ apiUrl, setShowEdit, currentPassword, editPassword }) => {
   const [username, setUsername] = useState(currentPassword.username);
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
+  const [passwordError, setPasswordError] = useState("");
 
   const submit = (e) => {
     e.preventDefault();
 
     // Verify password match
     if (password !== confirmPassword) {
-      return alert("Password must match");
+      return setPasswordError("Passwords must match");
     }
 
     axios
@@ -90,6 +91,7 @@ const Edit = ({ apiUrl, setShowEdit, currentPassword, editPassword }) => {
               setConfirmPassword(e.target.value);
             }}
           />
+          <span className="incorrect-creds">{passwordError}</span>
         </div>
         <button className="form-btn">ADD</button>
       </form>
