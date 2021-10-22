@@ -53,7 +53,6 @@ const Home = ({ apiUrl }) => {
       axios
         .delete(`${apiUrl}/password/${_id}`, { withCredentials: true })
         .then((res) => {
-          console.log(res);
           setPasswords([...passwords].filter((password) => password._id !== _id));
         })
         .catch((err) => {
