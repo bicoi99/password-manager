@@ -3,7 +3,7 @@ import Login from "./pages/Login";
 import Home from "./pages/Home";
 
 const App = () => {
-  const apiUrl = "https://huy-password-manager.herokuapp.com";
+  const apiUrl = "https://api.huynhatduong.com";
 
   return (
     <Router>

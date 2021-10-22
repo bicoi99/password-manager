@@ -31,7 +31,7 @@ app.use(cookieParser());
 app.use(
   cors({
     credentials: true,
-    origin: "https://vibrant-cray-bdff94.netlify.app",
+    origin: "https://huy-duong-password-manager.netlify.app",
   })
 ); // pass to allow http cookie to go through
 
