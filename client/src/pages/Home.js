@@ -4,6 +4,7 @@ import { Redirect } from "react-router-dom";
 import Add from "../components/Add";
 import Delete from "../components/Delete";
 import Edit from "../components/Edit";
+import Loader from "../components/Loader";
 import Navbar from "../components/Navbar";
 import PasswordEntity from "../components/PasswordEntity";
 import add from "../img/add.png";
@@ -18,24 +19,27 @@ const Home = ({ apiUrl }) => {
   const [showAdd, setShowAdd] = useState(false);
   const [showEdit, setShowEdit] = useState(false);
   const [showDelete, setShowDelete] = useState(false);
+  const [loading, setLoading] = useState(false);
 
   // Run at component render
   useEffect(() => {
+    setLoading(true);
     axios
       .get(apiUrl + "/auth/user", { withCredentials: true })
-      .then((response) => {
-        setUsername(response.data);
+      .then((userResponse) => {
+        setUsername(userResponse.data);
         // Make passwords request
-        axios
-          .get(apiUrl + "/password", { withCredentials: true })
-          .then((response) => {
-            setPasswords(response.data);
-          })
-          .catch((err) => {
-            console.log(err);
-          });
+        return axios.get(apiUrl + "/password", { withCredentials: true });
       })
-      .catch(() => {
+      .then((passwordResponse) => {
+        setPasswords(passwordResponse.data);
+        setLoading(false);
+      })
+      .catch((err) => {
+        if (err.response) {
+          console.log(err.response.data.message);
+        }
+        setLoading(false);
         setRedirect(true);
       });
   }, [apiUrl]);
@@ -80,7 +84,9 @@ const Home = ({ apiUrl }) => {
     return <Redirect to="/login" />;
   }
 
-  return (
+  return loading ? (
+    <Loader />
+  ) : (
     <div className="home-bg">
       {showAdd && <Add apiUrl={apiUrl} setShowAdd={setShowAdd} addPassword={addPassword} />}
       {showEdit && (
