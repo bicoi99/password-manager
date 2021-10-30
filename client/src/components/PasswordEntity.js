@@ -1,5 +1,6 @@
 import axios from "axios";
 import { useState } from "react";
+import "../css/PasswordEntity.css";
 
 const PasswordEntity = ({ apiUrl, _id, appName, username, setShowEdit, setShowDelete, setCurrentPassword }) => {
   const [showPassword, setShowPassword] = useState(true);
@@ -27,10 +28,12 @@ const PasswordEntity = ({ apiUrl, _id, appName, username, setShowEdit, setShowDe
       <div className="info">
         <h1>{appName}</h1>
         <h3>{username}</h3>
-        <h3>{showPassword ? String.fromCharCode(8226).repeat(20) : password}</h3>
-      </div>
-      <div className="hide-show" onClick={hideShowPassword}>
-        {showPassword ? <i className="fas fa-lg fa-eye btn"></i> : <i className="fas fa-lg fa-eye-slash btn"></i>}
+        <div className="password">
+          <h3>{showPassword ? String.fromCharCode(8226).repeat(20) : password}</h3>
+          <div className="eye" onClick={hideShowPassword}>
+            {showPassword ? <i className="fas fa-lg fa-eye btn"></i> : <i className="fas fa-lg fa-eye-slash btn"></i>}
+          </div>
+        </div>
       </div>
       <div className="password-buttons">
         <i

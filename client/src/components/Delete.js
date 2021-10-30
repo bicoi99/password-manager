@@ -1,4 +1,5 @@
 import axios from "axios";
+import "../css/Delete.css";
 
 const Delete = ({ apiUrl, setShowDelete, _id, deletePassword }) => {
   const deleteFromApi = () => {

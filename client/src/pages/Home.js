@@ -8,6 +8,7 @@ import Loader from "../components/Loader";
 import Navbar from "../components/Navbar";
 import PasswordEntity from "../components/PasswordEntity";
 import add from "../img/add.png";
+import "../css/Home.css";
 
 const Home = ({ apiUrl }) => {
   // States

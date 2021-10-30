@@ -31,7 +31,7 @@ app.use(cookieParser());
 app.use(
   cors({
     credentials: true,
-    origin: "https://www.huynhatduong.com",
+    origin: process.env.NODE_ENV === "development" ? "http://localhost:3000" : "https://www.huynhatduong.com",
   })
 ); // pass to allow http cookie to go through
 

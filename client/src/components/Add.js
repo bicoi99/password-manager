@@ -1,6 +1,7 @@
 import axios from "axios";
 import { useState } from "react";
 import close from "../img/close.png";
+import "../css/Modal.css";
 
 const Add = ({ apiUrl, setShowAdd, addPassword }) => {
   const [appName, setAppName] = useState("");

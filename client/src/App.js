@@ -1,9 +1,10 @@
 import { BrowserRouter as Router, Route } from "react-router-dom";
 import Login from "./pages/Login";
 import Home from "./pages/Home";
+import "./css/App.css";
 
 const App = () => {
-  const apiUrl = "https://api.huynhatduong.com";
+  const apiUrl = process.env.NODE_ENV === "development" ? "http://localhost:5000" : "https://api.huynhatduong.com";
 
   return (
     <Router>

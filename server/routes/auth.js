@@ -63,7 +63,7 @@ router.post("/login", (req, res) => {
         // Store token to cookie
         res.cookie("jwt", token, {
           httpOnly: true,
-          sameSite: "strict",
+          sameSite: process.env.NODE_ENV === "development" ? "none" : "strict",
           secure: true,
           maxAge: 24 * 60 * 60 * 1000, // 1 day
         });
