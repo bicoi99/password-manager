@@ -1,0 +1,70 @@
+@import url("https://fonts.googleapis.com/css2?family=Roboto:wght@400;500&display=swap");
+
+:root {
+  --main-color: #12cdd4;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  font-family: "Roboto", sans-serif;
+}
+
+/* Utilities */
+.btn {
+  cursor: pointer;
+}
+
+.btn:hover {
+  transform: scale(1.1);
+}
+
+/* Media */
+@media only screen and (max-width: 768px) {
+  /* Login */
+  .login-box {
+    width: 90%;
+  }
+
+  .form-control {
+    width: 80%;
+  }
+
+  .form-btn {
+    width: 80%;
+  }
+
+  /* Navbar */
+  .navbar {
+    height: 80px;
+  }
+
+  .navbar .nav-container {
+    padding: 0 20px;
+  }
+
+  /* Home page */
+  .home-container {
+    margin: 80px auto 0 auto;
+    min-height: calc(100vh - 80px);
+  }
+
+  /* Password entity */
+  .password-entity {
+    width: 90%;
+    gap: 30px;
+  }
+
+  /* Modal */
+  .modal {
+    width: 95%;
+    margin-top: 90px;
+    gap: 10px;
+  }
+
+  .modal .form-control,
+  .modal .form-btn {
+    width: 85%;
+  }
+}
