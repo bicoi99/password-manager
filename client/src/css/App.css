@@ -67,4 +67,8 @@
   .modal .form-btn {
     width: 85%;
   }
+
+  .btn:hover {
+    transform: scale(1);
+  }
 }
