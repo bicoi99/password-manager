@@ -1,6 +1,7 @@
 import axios from "axios";
 import { useState } from "react";
 import close from "../img/close.png";
+import generatePassword from "../utils/generatePassword";
 
 const Edit = ({ apiUrl, setShowEdit, currentPassword, editPassword }) => {
   const [appName, setAppName] = useState(currentPassword.appName);
@@ -8,6 +9,8 @@ const Edit = ({ apiUrl, setShowEdit, currentPassword, editPassword }) => {
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
   const [passwordError, setPasswordError] = useState("");
+  const [showPassword, setShowPassword] = useState(false);
+  const [copied, setCopied] = useState(false);
 
   const submit = (e) => {
     e.preventDefault();
@@ -34,6 +37,20 @@ const Edit = ({ apiUrl, setShowEdit, currentPassword, editPassword }) => {
       .catch((err) => {
         console.log(err);
       });
+  };
+
+  const handleNewPassword = () => {
+    const generatedPassword = generatePassword();
+    setPassword(generatedPassword);
+    setCopied(false);
+  };
+
+  const handleCopied = () => {
+    navigator.clipboard.writeText(password);
+    setCopied(true);
+    setTimeout(() => {
+      setCopied(false);
+    }, 2000);
   };
 
   return (
@@ -72,19 +89,29 @@ const Edit = ({ apiUrl, setShowEdit, currentPassword, editPassword }) => {
         </div>
         <div className="form-control">
           <h4>Password</h4>
-          <input
-            type="password"
-            value={password}
-            required
-            onChange={(e) => {
-              setPassword(e.target.value);
-            }}
-          />
+          <div className="password-form-item">
+            <input
+              type={showPassword ? "text" : "password"}
+              value={password}
+              required
+              onChange={(e) => {
+                setPassword(e.target.value);
+              }}
+            />
+            {showPassword && (
+              <div className={`copy-password${copied ? " active" : ""}`} onClick={handleCopied}>
+                <i className="far fa-copy"></i>
+              </div>
+            )}
+            <div className="new-password" onClick={handleNewPassword}>
+              <i className="fas fa-sync"></i>
+            </div>
+          </div>
         </div>
         <div className="form-control">
           <h4>Confirm password</h4>
           <input
-            type="password"
+            type={showPassword ? "text" : "password"}
             value={confirmPassword}
             required
             onChange={(e) => {
@@ -92,8 +119,19 @@ const Edit = ({ apiUrl, setShowEdit, currentPassword, editPassword }) => {
             }}
           />
           <span className="incorrect-creds">{passwordError}</span>
+          <div className="show-password-checkbox">
+            <input
+              type="checkbox"
+              name="showPassword"
+              onClick={() => {
+                setShowPassword(!showPassword);
+                navigator.clipboard.writeText("");
+              }}
+            />
+            <label htmlFor="showPassword">Show Password</label>
+          </div>
         </div>
-        <button className="form-btn">ADD</button>
+        <button className="form-btn">SUBMIT</button>
       </form>
     </div>
   );

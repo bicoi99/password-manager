@@ -31,3 +31,78 @@
   top: 0;
   right: 0;
 }
+
+.password-form-item {
+  width: 97%;
+  display: flex;
+  align-items: center;
+  border-radius: 5px;
+  border: 2px solid black;
+}
+
+.password-form-item input {
+  width: stretch;
+  border: none;
+}
+
+.password-form-item input:focus {
+  outline: none;
+}
+
+.copy-password {
+  width: 30px;
+  cursor: pointer;
+  text-align: center;
+  position: relative;
+}
+
+.copy-password::before {
+  content: "Copied";
+  color: white;
+  position: absolute;
+  top: 25px;
+  right: 0;
+  background-color: var(--main-color);
+  padding: 5px;
+  border-radius: 7px;
+  font-size: small;
+  display: none;
+}
+
+.copy-password::after {
+  content: "";
+  position: absolute;
+  top: 23px;
+  right: 10px;
+  width: 5px;
+  height: 5px;
+  background-color: var(--main-color);
+  transform: rotate(45deg);
+  display: none;
+}
+
+.copy-password.active::before,
+.copy-password.active::after {
+  display: block;
+}
+
+.new-password {
+  cursor: pointer;
+  width: 30px;
+  text-align: center;
+  color: black;
+}
+
+.show-password-checkbox {
+  margin: 10px 0;
+  display: flex;
+  align-items: center;
+  font-size: 0.88rem;
+  height: 20px;
+}
+
+.show-password-checkbox input {
+  height: 20px;
+  width: 20px;
+  margin-right: 5px;
+}

@@ -47,8 +47,13 @@
   font-size: large;
   width: 90%;
   border: none;
+  margin: 0 10px;
 }
 
 .search input:focus {
   outline: none;
+}
+
+.cancel-search {
+  cursor: pointer;
 }

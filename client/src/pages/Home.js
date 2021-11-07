@@ -122,6 +122,14 @@ const Home = ({ apiUrl }) => {
                 setSearch(e.target.value);
               }}
             />
+            <div
+              className="cancel-search"
+              onClick={() => {
+                setSearch("");
+              }}
+            >
+              <i className="fas fa-times"></i>
+            </div>
           </div>
           {sortAndFilterPasswords(passwords).map(({ _id, appName, username }) => {
             return (
